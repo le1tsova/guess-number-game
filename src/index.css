@@ -1,0 +1,88 @@
+#root {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #dabb52;
+  background-color: rgb(228, 239, 247);
+  border-radius: 5px;
+}
+h1,
+p {
+  text-align: center;
+}
+input {
+  height: 35px;
+
+  width: 30%;
+  border: 2px solid #7ba7ab;
+  border-radius: 5px;
+  font-size: 16px;
+
+  outline: none;
+  background: #f9f0da;
+  color: #9e9c9c;
+}
+button {
+  height: 42px;
+
+  width: 30%;
+  border: 2px solid #7ba7ab;
+  border-radius: 5px;
+  font-size: 16px;
+
+  margin-left: 30px;
+}
+.wrap {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.wrap-ul-list {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.attempts {
+  counter-reset: li;
+  list-style: none;
+  font: 14px "Trebuchet MS", "Lucida Sans";
+  padding: 0;
+
+  text-align: center;
+}
+.attempts li {
+  text-align: center;
+}
+.attempts a {
+  position: relative;
+  display: block;
+
+  padding: 0.4em 0.4em 0.4em 2em;
+  margin: 0.5em 0;
+  background: #dad2ca;
+  color: #444;
+  text-decoration: none;
+  border-radius: 0.3em;
+  transition: 0.3s ease-out;
+}
+.attempts a:hover {
+  background: #e9e4e0;
+}
+
+.attempts a:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -1.3em;
+  top: 50%;
+  margin-top: -1.3em;
+  background: rgb(228, 239, 247);
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  border: 0.3em solid #dabb52;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 2em;
+  transition: all 0.3s ease-out;
+}
