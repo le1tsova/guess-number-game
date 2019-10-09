@@ -2,8 +2,8 @@ import React from "react";
 
 function ListItem(props) {
   return (
-    <li>
-      <a href={"###"}>{props.value}</a>
+    <li className="attempts__list__item">
+      <p className="attempts__list__item__p">{props.value}</p>
     </li>
   );
 }
@@ -15,8 +15,8 @@ export default function AttemptList(props) {
   ));
 
   return (
-    <div className="wrap-ul-list">
-      <ul className="attempts">{ListItems}</ul>
+    <div className="attempts">
+      <ul className="attempts__list">{ListItems}</ul>
     </div>
   );
 }

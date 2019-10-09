@@ -1,16 +1,13 @@
-#root {
+.page {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
   border: 2px solid #dabb52;
   background-color: rgb(228, 239, 247);
   border-radius: 5px;
-}
-h1,
-p {
   text-align: center;
 }
-input {
+.game-form__input {
   height: 35px;
 
   width: 30%;
@@ -22,38 +19,40 @@ input {
   background: #f9f0da;
   color: #9e9c9c;
 }
-button {
+
+.btn {
   height: 42px;
 
   width: 30%;
   border: 2px solid #7ba7ab;
   border-radius: 5px;
   font-size: 16px;
-
+}
+.game-form__btn_submit {
   margin-left: 30px;
 }
-.wrap {
+.btn_new-game {
+  margin: 0 auto 15px auto;
+}
+
+.game-form__btn_submit {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.wrap-ul-list {
+.attempts {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 }
-.attempts {
+.attempts__list {
   counter-reset: li;
   list-style: none;
   font: 14px "Trebuchet MS", "Lucida Sans";
   padding: 0;
+}
 
-  text-align: center;
-}
-.attempts li {
-  text-align: center;
-}
-.attempts a {
+.attempts__list__item__p {
   position: relative;
   display: block;
 
@@ -65,11 +64,11 @@ button {
   border-radius: 0.3em;
   transition: 0.3s ease-out;
 }
-.attempts a:hover {
+.attempts__list__item__p:hover {
   background: #e9e4e0;
 }
 
-.attempts a:before {
+.attempts__list__item__p:before {
   content: counter(li);
   counter-increment: li;
   position: absolute;

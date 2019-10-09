@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Step from "./step.js";
-import Message from "./message.js";
-import AttemptList from "./attempt.js";
+import Game from "./Game";
+import NewGame from "./NewGame";
+import Message from "./Message";
+import AttemptList from "./Attempt";
 import "./index.css";
 
 function randomNumber() {
@@ -14,7 +15,7 @@ const NEW_GAME = {
   messageGame: "Good Luck",
   attempt: []
 };
-class Game extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,31 +24,17 @@ class Game extends React.Component {
       messageGame: "Good Luck!",
       attempt: []
     };
-    this.textInputRef = React.createRef();
   }
 
-  handleNewGameClick = () => {
-    if (this.state.status) {
-      this.textInputRef.current.value = "";
-      this.setState(NEW_GAME);
-      this.setState({ riddle: randomNumber() });
-    } else {
-      this.setState({ status: true });
-    }
-  };
-
-  handleSubmitClick = () => {
-    let answer = Number(this.textInputRef.current.value);
-
-    const currentAttempt = this.state.attempt;
-    currentAttempt.push(answer);
-
-    this.setState({
-      attempt: currentAttempt
-    });
+  handleSubmitClick = answer => {
+    this.setState(state => ({
+      attempt: state.attempt.concat(answer)
+    }));
 
     if (answer < this.state.riddle) {
-      this.setState({ messageGame: "Too Higth!" });
+      this.setState({
+        messageGame: "Too Higth!"
+      });
     } else if (answer > this.state.riddle) {
       this.setState({ messageGame: "Too Low!" });
     } else if (answer === this.state.riddle) {
@@ -57,30 +44,13 @@ class Game extends React.Component {
         status: true
       }));
     }
-    this.textInputRef.current.value = "";
   };
+  handleNewGameClick = () => {
+    this.setState(NEW_GAME);
+    this.setState({ riddle: randomNumber() });
+  };
+
   render() {
-    let isActiveComponent = this.state.status;
-    let button;
-    let attepmptList;
-
-    if (isActiveComponent) {
-      button = (
-        <Step value={isActiveComponent} onClick={this.handleNewGameClick} />
-      );
-      attepmptList = (
-        <AttemptList
-          viewsResults={this.state.status}
-          list={this.state.attempt}
-        />
-      );
-    } else {
-      button = (
-        <Step value={isActiveComponent} onClick={this.handleSubmitClick} />
-      );
-      attepmptList = null;
-    }
-
     return (
       <div>
         <h1>Number guessing game</h1>
@@ -90,14 +60,20 @@ class Game extends React.Component {
           high or too low. ( {this.state.riddle} )
         </p>
         <Message text={this.state.messageGame} />
-        <div className="wrap">
-          <input type="text" ref={this.textInputRef} />
-          {button}
-        </div>
-        {attepmptList}
+        {!this.state.status && <Game submitClick={this.handleSubmitClick} />}
+
+        {this.state.status && (
+          <AttemptList
+            viewsResults={this.state.status}
+            list={this.state.attempt}
+          />
+        )}
+        {this.state.status && (
+          <NewGame newGameClick={this.handleNewGameClick} />
+        )}
       </div>
     );
   }
 }
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+ReactDOM.render(<App />, document.querySelector(".page"));
