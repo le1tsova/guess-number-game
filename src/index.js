@@ -7,23 +7,18 @@ import AttemptList from "./Attempt";
 import "./index.css";
 
 function randomNumber() {
-  return Math.floor(1 + Math.random() * (100 + 1 - 1));
+  return Math.floor(1 + Math.random() * 100);
 }
 const NEW_GAME = {
   status: false,
   riddle: randomNumber(),
-  messageGame: "Good Luck",
+  messageGame: "Good Luck!",
   attempt: []
 };
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      status: false,
-      riddle: randomNumber(),
-      messageGame: "Good Luck!",
-      attempt: []
-    };
+    this.state = NEW_GAME;
   }
 
   handleSubmitClick = answer => {
@@ -44,6 +39,14 @@ class App extends React.Component {
         status: true
       }));
     }
+    this.setState(state => {
+      if (state.attempt.length === 8) {
+        return {
+          messageGame: "The answer is " + state.riddle + ". GAME OVER!",
+          status: true
+        };
+      }
+    });
   };
   handleNewGameClick = () => {
     this.setState(NEW_GAME);
@@ -51,26 +54,26 @@ class App extends React.Component {
   };
 
   render() {
+    const status = this.state.status;
     return (
       <div>
         <h1>Number guessing game</h1>
         <p>
           Computer have selected a random number between 1 and 100. See if you
           can guess it in 8 turns or less. We'll tell you if your guess was too
-          high or too low. ( {this.state.riddle} )
+          high or too low.
         </p>
-        <Message text={this.state.messageGame} />
-        {!this.state.status && <Game submitClick={this.handleSubmitClick} />}
 
-        {this.state.status && (
+        <Message>{this.state.messageGame}</Message>
+        {!status && <Game submitClick={this.handleSubmitClick} />}
+
+        {status && (
           <AttemptList
             viewsResults={this.state.status}
             list={this.state.attempt}
           />
         )}
-        {this.state.status && (
-          <NewGame newGameClick={this.handleNewGameClick} />
-        )}
+        {status && <NewGame newGameClick={this.handleNewGameClick} />}
       </div>
     );
   }

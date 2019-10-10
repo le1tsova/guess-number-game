@@ -11,7 +11,7 @@ function ListItem(props) {
 export default function AttemptList(props) {
   const numbers = props.list;
   const ListItems = numbers.map((number, index) => (
-    <ListItem key={index.toString()} value={number} />
+    <ListItem key={index} value={number} />
   ));
 
   return (

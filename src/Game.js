@@ -1,10 +1,8 @@
 import React from "react";
 
 export default class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.textInputRef = React.createRef();
-  }
+  textInputRef = React.createRef();
+
   handleClick = e => {
     e.preventDefault();
     this.props.submitClick(Number(this.textInputRef.current.value));
