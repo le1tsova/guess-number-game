@@ -10,13 +10,13 @@ function ListItem(props) {
 
 export default function AttemptList(props) {
   const numbers = props.list;
-  const ListItems = numbers.map((number, index) => (
+  const listItems = numbers.map((number, index) => (
     <ListItem key={index} value={number} />
   ));
 
   return (
     <div className="attempts">
-      <ul className="attempts__list">{ListItems}</ul>
+      <ul className="attempts__list">{listItems}</ul>
     </div>
   );
 }

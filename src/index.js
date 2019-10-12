@@ -4,6 +4,7 @@ import Game from "./Game";
 import NewGame from "./NewGame";
 import Message from "./Message";
 import AttemptList from "./Attempt";
+import HealthPoints from "./HealthPoints";
 import "./index.css";
 
 function randomNumber() {
@@ -28,10 +29,10 @@ class App extends React.Component {
 
     if (answer < this.state.riddle) {
       this.setState({
-        messageGame: "Too Higth!"
+        messageGame: "The secret number is higher!"
       });
     } else if (answer > this.state.riddle) {
-      this.setState({ messageGame: "Too Low!" });
+      this.setState({ messageGame: "The secret number is lower!" });
     } else if (answer === this.state.riddle) {
       this.setState(state => ({
         messageGame:
@@ -65,8 +66,9 @@ class App extends React.Component {
         </p>
 
         <Message>{this.state.messageGame}</Message>
-        {!status && <Game submitClick={this.handleSubmitClick} />}
+        <HealthPoints sumAttempts={this.state.attempt} />
 
+        {!status && <Game submitClick={this.handleSubmitClick} />}
         {status && (
           <AttemptList
             viewsResults={this.state.status}
