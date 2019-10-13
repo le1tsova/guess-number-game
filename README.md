@@ -1,4 +1,4 @@
-## React-игра "Угадай число"
+# React-игра "Угадай число"
 
 ![game-scr](static/number-guessing-game.png)
 

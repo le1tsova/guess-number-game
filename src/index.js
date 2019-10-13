@@ -66,7 +66,7 @@ class App extends React.Component {
         </p>
 
         <Message>{this.state.messageGame}</Message>
-        <HealthPoints sumAttempts={this.state.attempt} />
+        <HealthPoints sumAttempts={this.state.attempt.length} />
 
         {!status && <Game submitClick={this.handleSubmitClick} />}
         {status && (

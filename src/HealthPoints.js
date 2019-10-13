@@ -6,10 +6,9 @@ const HEARTS = {
 };
 
 export default function HealthPoints(props) {
-  let sumAttempts = props.sumAttempts.length;
-  let emojiStr =
-    HEARTS.brokenHeart.repeat(sumAttempts) +
-    HEARTS.heart.repeat(8 - sumAttempts);
+  const emojiStr =
+    HEARTS.brokenHeart.repeat(props.sumAttempts) +
+    HEARTS.heart.repeat(8 - props.sumAttempts);
 
   return <p>{emojiStr}</p>;
 }
