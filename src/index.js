@@ -5,10 +5,11 @@ import NewGame from "./NewGame";
 import Message from "./Message";
 import AttemptList from "./Attempt";
 import HealthPoints from "./HealthPoints";
+import { MAX_ATTEMPTS, INTERVAL_START, INTERVAL_END } from "./data";
 import "./index.css";
 
 function randomNumber() {
-  return Math.floor(1 + Math.random() * 100);
+  return Math.floor(INTERVAL_START + Math.random() * INTERVAL_END);
 }
 const NEW_GAME = {
   status: false,
@@ -41,7 +42,7 @@ class App extends React.Component {
       }));
     }
     this.setState(state => {
-      if (state.attempt.length === 8) {
+      if (state.attempt.length === MAX_ATTEMPTS) {
         return {
           messageGame: "The answer is " + state.riddle + ". GAME OVER!",
           status: true
@@ -60,9 +61,9 @@ class App extends React.Component {
       <div>
         <h1>Number guessing game</h1>
         <p>
-          Computer have selected a random number between 1 and 100. See if you
-          can guess it in 8 turns or less. We'll tell you if your guess was too
-          high or too low.
+          Computer have selected a random number between {INTERVAL_START} and{" "}
+          {INTERVAL_END}. See if you can guess it in {MAX_ATTEMPTS} turns or
+          less. We'll tell you if your guess was too high or too low.
         </p>
 
         <Message>{this.state.messageGame}</Message>

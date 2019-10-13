@@ -1,4 +1,5 @@
 import React from "react";
+import { INTERVAL_START, INTERVAL_END } from "./data";
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -11,8 +12,11 @@ export default class Game extends React.Component {
 
   handleClick = e => {
     e.preventDefault();
-    if (this.state.attempt) {
-      this.props.submitClick(Number(this.state.attempt));
+    if (
+      this.state.attempt >= INTERVAL_START &&
+      this.state.attempt <= INTERVAL_END
+    ) {
+      this.props.submitClick(this.state.attempt);
     }
     this.setState({ attempt: "" });
   };

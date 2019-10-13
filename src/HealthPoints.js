@@ -1,4 +1,5 @@
 import React from "react";
+import { MAX_ATTEMPTS } from "./data";
 
 const HEARTS = {
   heart: "❤️",
@@ -8,7 +9,7 @@ const HEARTS = {
 export default function HealthPoints(props) {
   const emojiStr =
     HEARTS.brokenHeart.repeat(props.sumAttempts) +
-    HEARTS.heart.repeat(8 - props.sumAttempts);
+    HEARTS.heart.repeat(MAX_ATTEMPTS - props.sumAttempts);
 
   return <p>{emojiStr}</p>;
 }
