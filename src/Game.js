@@ -22,7 +22,8 @@ export default class Game extends React.Component {
   };
 
   handleChange = e => {
-    const reg = new RegExp("^[0-9]+$");
+    e.preventDefault();
+    const reg = /^\d*$/;
     if (reg.test(e.target.value)) {
       this.setState({
         attempt: e.target.value
